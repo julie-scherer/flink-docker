@@ -30,7 +30,7 @@
 
     &rarr; The **`download-flink.sh`** script will:
     - Check that `FLINK_DOWNLOAD_PATH` is set in `.env` file and that it is an actual directory on the local computer (default is `$PWD` from `example.env`).
-    - Check if Flink has already been downloaded in `FLINK_DOWNLOAD_PATH`. If not, it will first check if the `FLINK_DOWNLOAD_PATH` directory is writable; otherwise, it will exit with an error status since it cannot write to that folder. Otherwise, it will extract the files from the `.tgz` file and write them to the `FLINK_DOWNLOAD_PATH` directory specified in the `.env` file.
+    - Check if Flink has already been downloaded in `FLINK_DOWNLOAD_PATH`. If not, it will first check if the `FLINK_DOWNLOAD_PATH` directory is writable; otherwise, it will exit with an error status since it cannot write to that folder. Now if you've passed all those tests and everything's looking good, it will extract the files from the `.tgz` file and write them to the `FLINK_DOWNLOAD_PATH` directory specified in the `.env` file.
 
     &rarr; The `start-flink.sh` script, you guessed it, starts Flink!
     - Once you have Flink installed and set up the environment variables, this script will start Flink by running a very simple command: `$FLINK_HOME/bin/start-cluster.sh`.
