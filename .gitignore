@@ -1,0 +1,8 @@
+# hide flink download folder
+flink-1.*/ 
+
+.env
+
+_*
+
+.DS_Store
