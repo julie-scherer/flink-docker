@@ -4,40 +4,32 @@
 
 1. Open a terminal, fork/clone the repo, and navigate (`cd`) to the project folder.
 
-2. Copy `example.env` to `.env` file and adjust the settings to your liking. If you want to skip, the `download-flink.sh` script will copy it for you.
-    
-    ```bash
-    cp example.env .env
-    ```
-
-3. Run the commands below:
+2. Run the commands below:
 
     ```bash
-    make download # if you have make installed
+    make up # if you have make installed
 
     # OR, just run these commands
-    chmod +x ./scripts/download-flink.sh
-    ./scripts/download-flink.sh
+    FLINK_IMAGE=my-flink-image
+    FLINK_CONTAINER=my-flink-container
+    docker build -t ${FLINK_IMAGE} .
+	docker run --name ${FLINK_CONTAINER} -d -p 8081:8081 ${FLINK_IMAGE}
     ```
+
+3. Check that Flink is running correctly. Open a web browser and go to http://localhost:8081/. This will bring up the Flink web interface, which shows you the status of the Flink cluster.
+
+    **:tada: That's it! You should now have Flink installed and running on your local machine.**
+
+4. Once you are done, clean up your Docker resources:
 
     ```bash
-    make start # if you have make installed
+    make down # if you have make installed
 
-    # OR, just run the commands below
-    chmod +x ./scripts/start-flink.sh
-    ./scripts/start-flink.sh
+    # OR, you can run the commands below manually
+    docker stop ${FLINK_CONTAINER}
+	docker rm ${FLINK_CONTAINER}
+	docker rmi ${FLINK_IMAGE} --force
     ```
-
-    &rarr; The **`download-flink.sh`** script will:
-    - Check that `FLINK_DOWNLOAD_PATH` is set in `.env` file and that it is an actual directory on the local computer (default is `$PWD` from `example.env`).
-    - Check if Flink has already been downloaded in `FLINK_DOWNLOAD_PATH`. If not, it will first check if the `FLINK_DOWNLOAD_PATH` directory is writable; otherwise, it will exit with an error status since it cannot write to that folder. Now if you've passed all those tests and everything's looking good, it will extract the files from the `.tgz` file and write them to the `FLINK_DOWNLOAD_PATH` directory specified in the `.env` file.
-
-    &rarr; The `start-flink.sh` script, you guessed it, starts Flink!
-    - Once you have Flink installed and set up the environment variables, this script will start Flink by running a very simple command: `$FLINK_HOME/bin/start-cluster.sh`.
-
-4. Last but not least, verify that Flink is running correctly. Open a web browser and go to http://localhost:8081/. This will bring up the Flink web interface, which shows you the status of the Flink cluster.
-
-**:tada: That's it! You should now have Flink installed and running on your local machine.**
 
 ## :star: Check out my notion to learn more!
 
