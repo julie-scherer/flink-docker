@@ -1,7 +1,7 @@
 FROM openjdk:11-jre-slim
 
-ENV FLINK_VERSION=1.14.3
-ENV SCALA_VERSION=2.12
+ARG FLINK_VERSION=${FLINK_VERSION}
+ARG SCALA_VERSION=${SCALA_VERSION}
 
 RUN apt-get update && \
     apt-get install -y wget && \
